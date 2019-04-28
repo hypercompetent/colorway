@@ -1,0 +1,14 @@
+Package: colorway
+Type: Package
+Title: Functions for Colors in R
+Version: 0.1.0
+Author: Lucas Graybuck <lucasgrayphd@gmail.com>
+Maintainer: Lucas Graybuck <lucasgrayphd@gmail.com>
+Description: A collection of (mostly simple) functions for generating and manipulating colors in R.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
+Imports:
+  ggplot2,
+  grDevices
