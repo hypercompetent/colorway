@@ -50,11 +50,19 @@ merge_nearest_colors <- function(color_vec,
                                  k = 12) {
   unique_color_vec <- unique(color_vec)
 
+  unique_rgb <- grDevices::col2rgb(unique_color_vec)
+  unique_rgb <- t(unique_rgb)
+
+  color_distances <- stats::dist(unique_rgb,
+                                 diag = FALSE,
+                                 upper = TRUE)
+
+  color_distances <- as.matrix(color_distances)
+
+  colnames(color_distances) <- rownames(color_distances) <- unique_color_vec
+
   while(length(unique_color_vec) > k) {
-    unique_rgb <- grDevices::col2rgb(unique_color_vec)
-    color_distances <- as.matrix(stats::dist(t(unique_rgb)))
-    color_distances[lower.tri(color_distances, diag = TRUE)] <- NA
-    colnames(color_distances) <- rownames(color_distances) <- unique_color_vec
+
 
     min_distance <- min(color_distances[upper.tri(color_distances)])
 
@@ -71,11 +79,33 @@ merge_nearest_colors <- function(color_vec,
 
     if(freq1 > freq2) {
       color_vec[color_vec == col2] <- col1
+
+      remove_color <- which(colnames(color_distances) == col2)
+      color_distances <- color_distances[-remove_color,-remove_color]
     } else if(freq1 < freq2) {
       color_vec[color_vec == col1] <- col2
+
+      remove_color <- which(colnames(color_distances) == col1)
+      color_distances <- color_distances[-remove_color,-remove_color]
     } else if(freq1 == freq2) {
+      # If the colors are equally frequent, replace both with their mean
       new_col <- color_mean(c(col1, col2))
       color_vec[color_vec %in% c(col1, col2)] <- new_col
+
+      # This means we need to recompute the distances
+      # Could re-build this to be more selective
+      unique_color_vec <- unique(color_vec)
+
+      unique_rgb <- grDevices::col2rgb(unique_color_vec)
+      unique_rgb <- t(unique_rgb)
+
+      color_distances <- stats::dist(unique_rgb,
+                                     diag = FALSE,
+                                     upper = TRUE)
+
+      color_distances <- as.matrix(color_distances)
+
+      colnames(color_distances) <- rownames(color_distances) <- unique_color_vec
     }
 
     unique_color_vec <- unique(color_vec)
