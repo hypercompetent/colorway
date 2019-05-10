@@ -70,6 +70,12 @@ White numbers indicate which colors were selected for the `palette`.
 #### varibow()
 
 The `varibow()` function generates a set of colors similar to base R's `rainbow()` function, but with more variation in saturation and value.
+
+I used `varibow()` to generate colors for Rosenberg and Roco, *et al* (2018), published in Science:  
+![](man/figures/varibow_figure_example.png?raw=true)
+Note that the colors look a bit different here due to conversion to CMYK colorspace.
+
+Here's a simpler example of function usage:
 ```
 varied_colors <- varibow(10)
 ```
