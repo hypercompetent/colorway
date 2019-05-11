@@ -50,7 +50,8 @@ build_palette <- function(central_color) {
     ggplot2::geom_tile(ggplot2::aes(x = x, y = y, fill = fill)) +
     ggplot2::geom_text(ggplot2::aes(x = x, y = y, label = number, color = color)) +
     ggplot2::scale_fill_identity() +
-    ggplot2::scale_color_identity()
+    ggplot2::scale_color_identity() +
+    ggplot2::theme_void()
 
   palette <- colorset[set_nums]
 
@@ -59,7 +60,8 @@ build_palette <- function(central_color) {
   palette_plot <- ggplot2::ggplot(palette_plot_data) +
     ggplot2::geom_tile(ggplot2::aes(x = x, y = y, fill = fill)) +
     ggplot2::geom_text(ggplot2::aes(x = x, y = y, label = number)) +
-    ggplot2::scale_fill_identity()
+    ggplot2::scale_fill_identity() +
+    ggplot2::theme_void()
 
   weave <- weave_plot(palette)
 

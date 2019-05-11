@@ -5,14 +5,12 @@ fig_dir <- "man/figures"
 blue_palette <- build_palette("dodgerblue")
 
 ggsave(file.path(fig_dir,"palette_plot.png"),
-       blue_palette$palette_plot +
-         theme_bw(base_size = 4),
+       blue_palette$palette_plot,
        width = 4,
        height = 1)
 
 ggsave(file.path(fig_dir,"colorset_plot.png"),
-       blue_palette$colorset_plot +
-         theme_bw(base_size = 4),
+       blue_palette$colorset_plot,
        width = 4,
        height = 2)
 
