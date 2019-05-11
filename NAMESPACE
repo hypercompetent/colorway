@@ -2,8 +2,10 @@
 
 export(build_palette)
 export(col2ab)
+export(color_lgl)
 export(color_mean)
 export(color_sum)
+export(color_which)
 export(colorspace_plot)
 export(desaturate_color)
 export(fade_color)
