@@ -112,7 +112,7 @@ values <- c(1,4,10,17,20,35,60)
 colors <- values_to_colors(values)
 
 ggplot() +
-  geom_tile(aes(x = 1:7, y = 1,
+  geom_tile(aes(x = 1:8, y = 1,
                 fill = colors)) +
   scale_fill_identity()
 ```
