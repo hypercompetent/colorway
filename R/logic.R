@@ -52,7 +52,7 @@ color_which <- function(color_vec,
 
 #' Perform logical tests on colors in RGB and/or HSV space
 #'
-#' \code{color_which()} takes a vector of R or hex colors and performs logical tests
+#' \code{color_lgl()} takes a vector of R or hex colors and performs logical tests
 #' on RGB values (r, g, and/or b) and/or HSV values (h, s, and v) supplied in the form
 #' of logial expressions (see Examples).
 #'
