@@ -45,6 +45,19 @@ ggsave(file.path(fig_dir,"rainbow_50_weave.png"),
          theme_bw(base_size = 4),
        width = 2, height = 2)
 
+rainbow_colorspace <- colorspace_plot(rainbow_50)
+varibow_colorspace <- colorspace_plot(varibow_50)
+
+ggsave(file.path(fig_dir,"varibow_colorspace.png"),
+       varibow_colorspace +
+         theme_bw(base_size = 4),
+       width = 2, height = 2)
+
+ggsave(file.path(fig_dir,"rainbow_colorspace.png"),
+       rainbow_colorspace +
+         theme_bw(base_size = 4),
+       width = 2, height = 2)
+
 values <- c(1,4,10,17,20,35,42,60)
 colors <- values_to_colors(values)
 

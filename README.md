@@ -107,6 +107,10 @@ Here's a simpler example of function usage:
 varied_colors <- varibow(10)
 ```
 
+## Plots
+
+#### weave_plot()
+
 These (or any set of colors) can be viewed with `weave_plot()`:
 ```
 weave_plot(varied_colors)
@@ -130,6 +134,21 @@ varibow_weave
 rainbow_weave
 ```
 ![](man/figures/rainbow_50_weave.png?raw=true)
+
+#### colorspace_plot()
+
+Another view on color palettes is provided by `colorspace_plot()`. Colorspace plot converts colors to a 2-dimensional Hue and Chroma representation, as described here: https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma. This gives a good view of the overall color coverage of a set of colors:
+```
+colorspace_plot(varibow_50)
+```
+![](man/figures/varibow_colorspace.png?raw=true)
+
+```
+colorspace_plot(rainbow_50)
+```
+![](man/figures/rainbow_colorspace.png?raw=true)
+
+
 
 ## Value conversion
 
