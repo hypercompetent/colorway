@@ -9,7 +9,7 @@ devtools::install_github("hypercompetent/colorway")
 
 ## Color logic
 
-`color_lgl()` and `color_which()` provide an easy way to test color values in RGB space:
+`color_lgl()` and `color_which()` provide an easy way to test color values in RGB/HSV space:
 ```
 color_vec <- c("#FF0000","dodgerblue","orange","808080","#000000")
 
