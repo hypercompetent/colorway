@@ -7,6 +7,33 @@ Colorway can be installed from Github using the devtools package:
 devtools::install_github("hypercompetent/colorway")
 ```
 
+## Color logic
+
+`color_lgl()` and `color_which()` provide an easy way to test color values in RGB space:
+```
+color_vec <- c("#FF0000","dodgerblue","orange","808080","#000000")
+
+# Which colors have an R value > 0.5 in RGB space (scaled between 0 and 1)?
+color_which(color_vec,
+            r > 0.5)
+[1] 1 3 4
+
+# Which colors have R or B > 0.3 in RGB space?
+color_which(color_vec,
+             r > 0.3 | g > 0.3)
+[1] 1 2 3 4
+
+# Which colors are dark (low V in HSV space)?
+color_lgl(color_vec,
+          v < 0.2)
+[1] FALSE FALSE FALSE FALSE  TRUE
+
+# Which colors are bright, saturated red?
+color_lgl(color_vec,
+          r > 0.7 & s > 0.7 & v > 0.7)
+[1]  TRUE FALSE  TRUE FALSE FALSE
+```
+
 ## Palettes
 
 Colorway provides functions for building and inspecting color palettes.
