@@ -1,6 +1,10 @@
 #' Generate a palette of related colors around a central color
 #'
 #' @param central_color a single color value around which to build the palette
+#' @param n_colors the number of colors to return in the primary palette (max = 100, default = 10)
+#' @param hue_range how much variation in hue is allowed in the palette (range = 0 to 1, default = 0.1)
+#' @param val_range how much variation in value is allowed in the palette (range = 0 to 1, default = 0.45)
+#'
 #'
 #' @return a list of palette results, containing:
 #' \itemize{
@@ -12,7 +16,10 @@
 #' }
 #' @export
 #'
-build_palette <- function(central_color) {
+build_palette <- function(central_color,
+                          n_colors = 10,
+                          hue_range = 0.1,
+                          val_range = 0.45) {
 
   central_hsv <- grDevices::rgb2hsv(grDevices::col2rgb(central_color))
 
@@ -20,7 +27,10 @@ build_palette <- function(central_color) {
   central_sat <- central_hsv[2,1]
   central_val <- central_hsv[3,1]
 
-  hue_set <- seq(central_hue - 0.049,central_hue + 0.05,0.001)
+  hue_set <- seq(central_hue - hue_range / 2,
+                 central_hue + hue_range / 2,
+                 length.out = 100)
+
   hue_set[hue_set < 0] <- 1 + hue_set[hue_set < 0]
   hue_set[hue_set > 1] <- hue_set[hue_set > 1] - 1
 
@@ -29,15 +39,27 @@ build_palette <- function(central_color) {
   } else if(central_val < 0.4) {
     central_val <- 0.4
   }
-  val_set <- rep(seq(central_val - 0.25, central_val + 0.2, 0.05),10)
+
+  val_set <- seq(central_val - val_range / 2,
+                     central_val + val_range / 2,
+                     length.out = 10)
+
+  val_set[val_set < 0] <- 0
+  val_set[val_set > 1] <- 1
+
+  val_set <- rep(c(val_set, rev(val_set)),
+                 5)
 
   colorset <- grDevices::hsv(h = hue_set,
                              s = central_sat,
                              v = val_set)
 
-  set_nums <- c(68,10,65,50,100,35,84,38,14)
+  set_nums <- quantile(1:100,
+                       probs = seq(0, 1, length.out = n_colors))
+  set_nums <- round(set_nums, 0)
+  #set_nums <- c(68,10,65,50,100,35,84,38,14)
 
-  colorset_plot_data <- data.frame(x = rep(1:10,each = 10),
+  colorset_plot_data <- data.frame(x = rep(1:10, each = 10),
                                    y = rep(1:10, 10),
                                    fill = colorset,
                                    number = 1:100)
@@ -55,7 +77,7 @@ build_palette <- function(central_color) {
 
   palette <- colorset[set_nums]
 
-  palette_plot_data <- data.frame(x = 1:9, y = 1, fill = palette, number = set_nums)
+  palette_plot_data <- data.frame(x = 1:n_colors, y = 1, fill = palette, number = set_nums)
 
   palette_plot <- ggplot2::ggplot(palette_plot_data) +
     ggplot2::geom_tile(ggplot2::aes(x = x, y = y, fill = fill)) +
