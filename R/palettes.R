@@ -19,6 +19,7 @@
 build_palette <- function(central_color,
                           n_colors = 10,
                           hue_range = 0.1,
+                          sat_range = 0.4,
                           val_range = 0.45) {
 
   central_hsv <- grDevices::rgb2hsv(grDevices::col2rgb(central_color))
@@ -34,10 +35,27 @@ build_palette <- function(central_color,
   hue_set[hue_set < 0] <- 1 + hue_set[hue_set < 0]
   hue_set[hue_set > 1] <- hue_set[hue_set > 1] - 1
 
-  if(central_val > 0.8) {
-    central_val <- 0.8
-  } else if(central_val < 0.4) {
-    central_val <- 0.4
+
+  if(central_sat > 1 - sat_range / 2) {
+    central_sat <- 1 - sat_range / 2
+  } else if(central_sat < sat_range / 2) {
+    central_sat <- sat_range / 2
+  }
+
+  sat_set <- seq(central_sat - sat_range / 2,
+                 central_sat + sat_range / 2,
+                 length.out = 10)
+
+  sat_set[sat_set < 0] <- 0
+  sat_set[sat_set > 1] <- 1
+
+  sat_set <- rep(c(sat_set, rev(sat_set)),
+                 5)
+
+  if(central_val > 1 - val_range / 2) {
+    central_val <- 1 - val_range / 2
+  } else if(central_val < val_range / 2) {
+    central_val <- val_range / 2
   }
 
   val_set <- seq(central_val - val_range / 2,
@@ -51,7 +69,7 @@ build_palette <- function(central_color,
                  5)
 
   colorset <- grDevices::hsv(h = hue_set,
-                             s = central_sat,
+                             s = sat_set,
                              v = val_set)
 
   set_nums <- quantile(1:100,
