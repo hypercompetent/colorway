@@ -18,7 +18,7 @@ color_which(color_vec,
             r > 0.5)
 [1] 1 3 4
 
-# Which colors have R or B > 0.3 in RGB space?
+# Which colors have R or G > 0.3 in RGB space?
 color_which(color_vec,
              r > 0.3 | g > 0.3)
 [1] 1 2 3 4
