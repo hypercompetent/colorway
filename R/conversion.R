@@ -11,9 +11,9 @@ col2ab <- function(color_vec) {
   rgbs <- grDevices::col2rgb(color_vec) / 255
   alphas <- rgbs["red",] - 0.5 * (rgbs["green",] + rgbs["blue",])
   betas <- sqrt(3) / 2 * (rgbs["green",] - rgbs["blue",])
-  return(data.frame(color = color_vec,
-                    alpha = alphas,
-                    beta = betas))
+  data.frame(color = color_vec,
+             alpha = alphas,
+             beta = betas)
 }
 
 #' Compute the closest R color for a set of hex colors
@@ -43,7 +43,7 @@ nearest_r_color <- function(color_vec) {
     nearest_cols[i] <- colnames(r_rgb)[which(diffs == min(diffs))][1]
   }
 
-
+  nearest_cols
 }
 
 #' Convert values to colors along a color ramp
