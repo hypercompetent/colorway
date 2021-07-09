@@ -123,5 +123,5 @@ build_palette <- function(central_color,
 varibow <- function(n_colors) {
   sats <- rep_len(c(0.55,0.7,0.85,1),length.out = n_colors)
   vals <- rep_len(c(1,0.8,0.6),length.out = n_colors)
-  sub("FF$","",grDevices::rainbow(n_colors, s = sats, v = vals))
+  grDevices::rainbow(n_colors, s = sats, v = vals, alpha = NULL)
 }
