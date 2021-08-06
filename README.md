@@ -1,4 +1,5 @@
 # colorway - functions for palettes and color manipulation
+[![DOI](https://zenodo.org/badge/183936596.svg)](https://zenodo.org/badge/latestdoi/183936596)
 
 ## Installation
 
