@@ -4,10 +4,22 @@
 \alias{build_palette}
 \title{Generate a palette of related colors around a central color}
 \usage{
-build_palette(central_color)
+build_palette(
+  central_color,
+  n_colors = 10,
+  hue_range = 0.1,
+  sat_range = 0.4,
+  val_range = 0.45
+)
 }
 \arguments{
 \item{central_color}{a single color value around which to build the palette}
+
+\item{n_colors}{the number of colors to return in the primary palette (max = 100, default = 10)}
+
+\item{hue_range}{how much variation in hue is allowed in the palette (range = 0 to 1, default = 0.1)}
+
+\item{val_range}{how much variation in value is allowed in the palette (range = 0 to 1, default = 0.45)}
 }
 \value{
 a list of palette results, containing:
