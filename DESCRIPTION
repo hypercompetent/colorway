@@ -1,8 +1,10 @@
 Package: colorway
 Type: Package
 Title: Functions for Colors in R
-Version: 0.1.0
-Author: Lucas Graybuck <lucasgrayphd@gmail.com>
+Version: 0.1.1
+Authors@R: c(
+    person("Lucas", "Graybuck", email = "lucasg@alleninstitute.org", role = c("aut","cre")),
+    person("Samuel", "Marsh", email = "samuel.marsh@childrens.harvard.edu", role = "ctb"))
 Maintainer: Lucas Graybuck <lucasgrayphd@gmail.com>
 Description: A collection of (mostly simple) functions for generating and manipulating colors in R.
 License: GPL-3
