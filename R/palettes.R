@@ -116,12 +116,13 @@ build_palette <- function(central_color,
 #' Generate a rainbow palette with variation in saturation and value
 #'
 #' @param n_colors The number of colors to generate
+#' @param alpha Opacity of color from 0 to 1; Default is NULL, which omits alpha.
 #'
 #' @return a character vector of hex color values of length n_colors.
 #' @export
 #'
-varibow <- function(n_colors) {
+varibow <- function(n_colors, alpha = NULL) {
   sats <- rep_len(c(0.55,0.7,0.85,1),length.out = n_colors)
   vals <- rep_len(c(1,0.8,0.6),length.out = n_colors)
-  grDevices::rainbow(n_colors, s = sats, v = vals, alpha = NULL)
+  grDevices::rainbow(n_colors, s = sats, v = vals, alpha = alpha)
 }
